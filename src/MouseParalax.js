@@ -33,16 +33,16 @@ export class MouseParalax {
    * Function that returns mouse position from hovered layer
    * starting from top left corner. More cross browser supported aproach
    * than native layerX, layerY event methods
-   * @param {document#event:mouseover} e mouseover event
+   * @param {document#event:mouseover} event mouseover event
    * @return {object} object containing x, y position
    */
-  getOffset (e) {
-    e = e || window.event
+  getOffset (event) {
+    event = event || window.event
 
-    const target = e.target || e.srcElement
+    const target = event.target || event.srcElement
     const rect = target.getBoundingClientRect()
-    const offsetX = e.clientX - rect.left
-    const offsetY = e.clientY - rect.top
+    const offsetX = event.clientX - rect.left
+    const offsetY = event.clientY - rect.top
 
     return {
       x: offsetX,
@@ -77,13 +77,13 @@ export class MouseParalax {
    * Initalizing function that:
    * -creates overlay element,
    * -add event listener to overlay that on mousemove animate paralax elements by
-   * updating their positions by mouseposition calculted by getOffset function
+   * updating their positions by mouse position calculated by getOffset function
    */
   init () {
     this.createOverlay()
 
-    this.overlay.addEventListener('mousemove', e => {
-      this.animate(this.getOffset(e).x, this.getOffset(e).y)
+    this.overlay.addEventListener('mousemove', event => {
+      this.animate(this.getOffset(event).x, this.getOffset(event).y)
     })
   }
 }
